@@ -6,45 +6,45 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.edu.upeu.examen.dao.DoctorDao;
-import pe.edu.upeu.examen.entity.Doctor;
-import pe.edu.upeu.examen.service.DoctorService;
+import pe.edu.upeu.examen.dao.CursoDao;
+import pe.edu.upeu.examen.entity.Curso;
+import pe.edu.upeu.examen.service.CursoService;
 
 
 @Service
-public class DoctorServiceImpl implements DoctorService{
+public class CursoServiceImpl implements CursoService{
 
 	@Autowired
-	private DoctorDao doctorDao;
+	private CursoDao cursoDao;
 
 	@Override
-	public Doctor create(Doctor d) {
+	public Curso create(Curso c) {
 		// TODO Auto-generated method stub
-		return doctorDao.create(d);
+		return cursoDao.create(c);
 	}
 
 	@Override
-	public Doctor update(Doctor d) {
+	public Curso update(Curso c) {
 		// TODO Auto-generated method stub
-		return doctorDao.update(d);
+		return cursoDao.update(c);
 	}
 
 	@Override
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		doctorDao.delete(id);
+		cursoDao.delete(id);
 	}
 
 	@Override
-	public Optional<Doctor> read(Long id) {
+	public Optional<Curso> read(Long id) {
 		// TODO Auto-generated method stub
-		return doctorDao.read(id);
+		return cursoDao.read(id);
 	}
 
 	@Override
-	public List<Doctor> readAll() {
+	public List<Curso> readAll() {
 		// TODO Auto-generated method stub
-		return doctorDao.readAll();
+		return cursoDao.readAll();
 	}
 	
 }

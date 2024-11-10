@@ -17,27 +17,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
-import pe.edu.upeu.examen.entity.Doctor;
-import pe.edu.upeu.examen.service.DoctorService;
+import pe.edu.upeu.examen.entity.Curso;
+import pe.edu.upeu.examen.service.CursoService;
 
 
 
 @RestController
-@RequestMapping("/api/doctor")
+@RequestMapping("/api/curso")
 @CrossOrigin(origins = "http://localhost:4200")
-public class DoctorController {
+public class CursoController {
 	
 	@Autowired
-	private DoctorService doctorService;
+	private CursoService cursoService;
 	
 	@GetMapping
-	public ResponseEntity<List<Doctor>> readAll(){
+	public ResponseEntity<List<Curso>> readAll(){
 		try {
-			List<Doctor> doctor = doctorService.readAll();
-			if(doctor.isEmpty()) {
+			List<Curso> curso = cursoService.readAll();
+			if(curso.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-			return new ResponseEntity<>(doctor, HttpStatus.OK);
+			return new ResponseEntity<>(curso, HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -45,10 +45,10 @@ public class DoctorController {
 		
 	}
 	@PostMapping
-	public ResponseEntity<Doctor> crear(@Valid @RequestBody Doctor doc){
+	public ResponseEntity<Curso> crear(@Valid @RequestBody Curso cur){
 		try {
-			Doctor d = doctorService.create(doc);
-			return new ResponseEntity<>(d, HttpStatus.CREATED);
+			Curso c = cursoService.create(cur);
+			return new ResponseEntity<>(c, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -56,10 +56,10 @@ public class DoctorController {
 		
 	}
 	@GetMapping("/{id}")
-	public ResponseEntity<Doctor> getDoctorId(@PathVariable("id") Long id){
+	public ResponseEntity<Curso> getCursoId(@PathVariable("id") Long id){
 		try {
-			Doctor d = doctorService.read(id).get();
-			return new ResponseEntity<>(d, HttpStatus.CREATED);
+			Curso c = cursoService.read(id).get();
+			return new ResponseEntity<>(c, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,9 +67,9 @@ public class DoctorController {
 		
 	}
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Doctor> delDoctor(@PathVariable("id") Long id){
+	public ResponseEntity<Curso> delCurso(@PathVariable("id") Long id){
 		try {
-			doctorService.delete(id);
+			cursoService.delete(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -78,14 +78,14 @@ public class DoctorController {
 		
 	}
 	@PutMapping("/{id}")
-	public ResponseEntity<?> updateDoctor(@PathVariable("id") Long id, @Valid @RequestBody Doctor doc){
+	public ResponseEntity<?> updateCurso(@PathVariable("id") Long id, @Valid @RequestBody Curso cur){
 
-			Optional<Doctor> d = doctorService.read(id);
-			if(d.isEmpty()) {
+			Optional<Curso> c = cursoService.read(id);
+			if(c.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}else {
 				
-				return new ResponseEntity<>(doctorService.update(doc), HttpStatus.OK);
+				return new ResponseEntity<>(cursoService.update(cur), HttpStatus.OK);
 			}		
 		
 	}

@@ -1,13 +1,9 @@
 package pe.edu.upeu.examen.entity;
 
-import java.util.Set;
-
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,19 +19,24 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name="especialidades")
-public class Especialidad {
+@Table(name = "alumnos")
+public class Alumno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
-    
-    @Column(name="nombre", length=50)
-    private String nombre;
-    
-    @OneToMany(mappedBy = "especialidad", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Doctor> doctores;
 
+    @Column(name = "nombres", length = 50)
+    private String nombres;
+
+    @Column(name = "apellidos", length = 50)
+    private String apellidos;
+
+    @Column(name = "dni", length = 50)
+    private String dni;
+
+    @OneToMany(mappedBy = "alumno")
+    @JsonIgnore
+    private List<Nota> notas;
 }
